@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7skxs3av640d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v257"]
+size = Vector2(42, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxdg6"]
+size = Vector2(32, 40)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(184, 144)
+
+[node name="Links" type="Node2D" parent="."]
+
+[node name="1" type="RigidBody2D" parent="Links"]
+position = Vector2(166, 1)
+freeze = true
+
+[node name="ColorRect" type="ColorRect" parent="Links/1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 21)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Links/1"]
+position = Vector2(4.76837e-07, -4.76837e-07)
+shape = SubResource("RectangleShape2D_4v257")
+
+[node name="2" type="RigidBody2D" parent="Links"]
+position = Vector2(-554, -343)
+
+[node name="ColorRect" type="ColorRect" parent="Links/2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 632.0
+offset_top = 392.0
+offset_right = 664.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 20)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Links/2"]
+position = Vector2(648, 412)
+shape = SubResource("RectangleShape2D_mxdg6")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(166, 1)
+rotation = 0.785397
+node_a = NodePath("../Links/1")
+node_b = NodePath("../Links/2")
+length = 100.0

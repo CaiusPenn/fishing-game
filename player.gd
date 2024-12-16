@@ -1,17 +1,12 @@
 extends CharacterBody2D
 
 @export var speed = 400  # Movement speed
-@onready var lure = $Lure  # Reference to the Lure
-@onready var line = $Line2D
 var screen_size
 
 func _ready():
 	print("Player is ready!")
 
 func _physics_process(delta):
-	line.clear_points()
-	line.add_point(global_position)  # Player's position
-	line.add_point(lure.global_position)
 	# Handle movement
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):

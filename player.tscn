@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1r6bmenbe6uu"]
+
+[ext_resource type="Texture2D" uid="uid://bp6tgqm5ur5k" path="res://art/playerGrey_up1.png" id="1_m3vbi"]
+[ext_resource type="Script" path="res://player.gd" id="1_mt8pl"]
+[ext_resource type="Texture2D" uid="uid://cg71bqb5hmp23" path="res://art/playerGrey_up2.png" id="2_0p183"]
+[ext_resource type="Texture2D" uid="uid://c8ngewui0oiq8" path="res://art/playerGrey_walk1.png" id="3_qg8sg"]
+[ext_resource type="Texture2D" uid="uid://ptlt4xvsw8aa" path="res://art/playerGrey_walk2.png" id="4_8nm8u"]
+[ext_resource type="Texture2D" uid="uid://bn33yjfirv1ik" path="res://icon.svg" id="6_d2fry"]
+[ext_resource type="Script" path="res://lure.gd" id="6_jl88n"]
+[ext_resource type="Texture2D" uid="uid://bw056sm6gq4s0" path="res://art/rod.png" id="7_6xtd8"]
+[ext_resource type="Script" path="res://rod.gd" id="9_h4epn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3pgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m3vbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0p183")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qg8sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8nm8u")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a5tqs"]
+radius = 55.0
+height = 134.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5w1w"]
+radius = 12.0416
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(522, 319)
+collision_mask = 0
+script = ExtResource("1_mt8pl")
+
+[node name="playerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r3pgi")
+animation = &"walk"
+frame_progress = 0.819556
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_a5tqs")
+
+[node name="Lure" type="RigidBody2D" parent="."]
+position = Vector2(-530, -344)
+script = ExtResource("6_jl88n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lure"]
+position = Vector2(663, 288)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_j5w1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lure"]
+position = Vector2(663, 288)
+scale = Vector2(0.180306, 0.153028)
+texture = ExtResource("6_d2fry")
+
+[node name="Camera2D" type="Camera2D" parent="Lure/Sprite2D"]
+position = Vector2(-441.93, 406.012)
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(206, -159)
+scale = Vector2(0.26729, 0.26729)
+texture = ExtResource("7_6xtd8")
+script = ExtResource("9_h4epn")
